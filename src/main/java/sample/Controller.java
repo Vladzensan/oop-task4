@@ -7,7 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import serialization.Serializer;
+import serialization.SerializerService;
+import serialization.SerializerServiceImpl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -24,10 +27,17 @@ public class Controller {
     private Object currentObject;
     private ComponentGroup componentGroup;
 
+    private SerializerService serializerService = new SerializerServiceImpl();
+    private Map<String, Class<? extends Serializer>> serializers = serializerService.getSerializers();
+
     @FXML
     private Label lblObjType;
 
+    @FXML
+    private Menu menuOpen;
 
+    @FXML
+    private Menu menuSave;
 
     @FXML
     private ScrollPane componentLayout;
@@ -88,7 +98,7 @@ public class Controller {
     @FXML
     void onDeleteObject(ActionEvent event) throws IllegalAccessException {
         String objName = cboxCurrent.getValue();
-        if(objName == null) {
+        if (objName == null) {
             alert("Chose current object");
             return;
         }
@@ -97,13 +107,11 @@ public class Controller {
 
         for (Map.Entry<String, ComponentGroup> entry :
                 objects.entrySet()) {
-           entry.getValue().removeLink(object);
+            entry.getValue().removeLink(object);
         }
 
         objects.remove(objName);
         updateCboxCurrent();
-
-
 
 
     }
@@ -152,6 +160,54 @@ public class Controller {
 
         cboxCreate.setItems(FXCollections.observableArrayList(classes.keySet()));
 
+        List<MenuItem> openItems = new ArrayList<>();
+        List<MenuItem> saveItems = new ArrayList<>();
+
+
+        for (String name : serializers.keySet()) {
+            MenuItem openItem = new MenuItem(name);
+            MenuItem saveItem = new MenuItem(name);
+            openItem.setOnAction(this::open);
+            saveItem.setOnAction(this::save);
+            openItems.add(openItem);
+            saveItems.add(saveItem);
+
+        }
+
+        menuSave.getItems().addAll(saveItems);
+        menuOpen.getItems().addAll(openItems);
+    }
+
+
+    public void open(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        String fileName = fileChooser.showOpenDialog(btnCreateObj.getScene().getWindow()).getAbsolutePath();
+        Serializer serializer = null;
+        try {
+            serializer = serializers.get(((MenuItem) actionEvent.getSource()).getText()).newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        Object[] newObjects = serializer.deserialize(fileName);
+        objects.clear();
+
+        for (Object object : newObjects) {
+            objects.put(object.getClass().getName() + object.hashCode(), FieldGenerator.generateComponentGroup(object));
+        }
+
+        updateCboxCurrent();
+    }
+
+    public void save(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        String fileName = fileChooser.showSaveDialog(btnCreateObj.getScene().getWindow()).getAbsolutePath();
+        Serializer serializer = null;
+        try {
+            serializer = serializers.get(((MenuItem) actionEvent.getSource()).getText()).newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        serializer.serialize(fileName, objects.values().stream().map(ComponentGroup::getTarget).toArray());
 
     }
 

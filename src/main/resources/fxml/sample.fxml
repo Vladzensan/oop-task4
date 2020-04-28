@@ -17,7 +17,11 @@
     <children>
         <MenuBar layoutY="2.0" prefHeight="33.0" prefWidth="80.0">
             <menus>
-                <Menu mnemonicParsing="false" text="File" />
+                <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <Menu fx:id="menuOpen" mnemonicParsing="false" text="Open" />
+                  <Menu fx:id="menuSave" mnemonicParsing="false" text="Save" />
+               </items></Menu>
             </menus>
         </MenuBar>
       <ScrollPane fx:id="componentLayout" layoutX="613.0" layoutY="34.0" prefHeight="929.0" prefWidth="753.0">

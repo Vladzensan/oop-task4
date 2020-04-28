@@ -4,9 +4,7 @@ import annotations.Name;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FieldGenerator {
     private static Set<Class<?>> userClasses = UserClassesServiceImpl.getInstance().getEntityClasses();
@@ -54,6 +52,19 @@ public class FieldGenerator {
         //System.out.println(someClass.getName());
 
     }
+
+    public static List<Field> getAllFields(Class<?> clazz) {
+        List<Field> fields = new LinkedList<>(Arrays.asList(clazz.getDeclaredFields()));
+
+        Class<?> superClass = clazz;
+        Set<Class<?>> userClasses = UserClassesServiceImpl.getInstance().getAllUserClasses();
+        while ((superClass = superClass.getSuperclass()) != null && userClasses.contains(superClass)) {
+            fields.addAll(Arrays.asList(superClass.getDeclaredFields()));
+        }
+
+        return fields;
+    }
+
 
     private static String getClassAnnotation(Object object) {
         Name annotationName = object.getClass().getAnnotation(Name.class);

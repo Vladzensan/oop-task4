@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class UserClassesServiceImpl implements UserClassesService {
+public class UserClassesServiceImpl implements UserClassService {
     private Set<Class<?>> entityClasses;
     private Set<Class<?>> allClasses;
 
