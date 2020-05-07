@@ -15,9 +15,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
+          Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/sample.fxml"));
+//        Parent root = fxmlLoader.load();
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1400, 1000));
+        primaryStage.setScene(new Scene(root, 1133, 755));
         transport = new CityTransport();
         Object obj = transport;
         System.out.println(obj.getClass());

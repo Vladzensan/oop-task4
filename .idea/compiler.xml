@@ -12,15 +12,18 @@
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="OOPLab" />
+        <module name="base32codec" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
-      <module name="OOPLab" target="1.8" />
+    <bytecodeTargetLevel target="11">
+      <module name="base32codec" target="11" />
+      <module name="OOPLab" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

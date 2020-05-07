@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/OOPLab.iml" filepath="$PROJECT_DIR$/OOPLab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base32codec/base32codec.iml" filepath="$PROJECT_DIR$/base32codec/base32codec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base64codec/base64codec.iml" filepath="$PROJECT_DIR$/base64codec/base64codec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugin/plugin.iml" filepath="$PROJECT_DIR$/plugin/plugin.iml" />
     </modules>
   </component>
 </project>
