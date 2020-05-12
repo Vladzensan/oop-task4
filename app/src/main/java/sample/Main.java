@@ -47,7 +47,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-      //  launch(args);
+//        launch(args);
           List<Cipher> ciphers = getAvailablePlugins("/home/vladzensan/IdeaProjects/OOP_Task4/out/artifacts");
         System.out.println(ciphers.size());
 

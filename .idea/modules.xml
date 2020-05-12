@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AESCipher/AESCipher.iml" filepath="$PROJECT_DIR$/AESCipher/AESCipher.iml" />
       <module fileurl="file://$PROJECT_DIR$/Ciphers/Ciphers.iml" filepath="$PROJECT_DIR$/Ciphers/Ciphers.iml" />
       <module fileurl="file://$PROJECT_DIR$/OOPLab.iml" filepath="$PROJECT_DIR$/OOPLab.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.module.iml" filepath="$PROJECT_DIR$/app/app.module.iml" />
     </modules>
   </component>
 </project>
