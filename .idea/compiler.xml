@@ -17,13 +17,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="OOPLab" />
-        <module name="base32codec" />
+        <module name="AESCipher" />
+        <module name="app" />
+        <module name="Ciphers" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
-      <module name="base32codec" target="11" />
+      <module name="AESCipher" target="11" />
+      <module name="app" target="11" />
+      <module name="Ciphers" target="11" />
       <module name="OOPLab" target="11" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="PREFER_TARGET_JDK_COMPILER" value="false" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Ciphers" options="" />
+    </option>
   </component>
 </project>
